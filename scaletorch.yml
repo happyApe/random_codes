@@ -1,10 +1,12 @@
 entrypoint: mnist_st.py
 name: my-sweep
-gpusPerTrial: 2
+gpusPerTrial: 1
 maxGpus: 4
 requirements: requirements.txt
 gpuTypes:
   - V100
+  - K80
+  - M60
 
 useSpot: false
 cuda: 11.3
