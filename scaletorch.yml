@@ -1,5 +1,5 @@
 entrypoint: mnist_st.py
-name: my-sweep
+name: monitor-test
 gpusPerTrial: 1
 maxGpus: 4
 requirements: requirements.txt
