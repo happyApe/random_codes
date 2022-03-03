@@ -9,6 +9,7 @@ import argparse
 import logging
 import nni
 import os
+import requests
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -118,7 +119,12 @@ def main(args):
     writer = SummaryWriter(f'{st.get_artifacts_dir()}/tensorboard')
 
     for epoch in range(1, args['epochs'] + 1):
-        os.system("ping www.google.com -t 10")
+        i = 0
+        logger.debug(f"Pinging {epoch+1} times..")
+        while i<(epoch+1):
+            resp = requests.get("https://www.google.com", verify = False)
+            i+=1
+
         train(args, model, device, train_loader, optimizer, epoch)
         test_acc = test(args, model, device, test_loader)
         torch.cuda.empty_cache()
