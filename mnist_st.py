@@ -56,6 +56,7 @@ def train(args, model, device, train_loader, optimizer, epoch):
             logger.info('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                 100. * batch_idx / len(train_loader), loss.item()))
+    time.sleep(epoch)
 
 
 def test(args, model, device, test_loader):
@@ -116,8 +117,11 @@ def main(args):
     writer = SummaryWriter(f'{st.get_artifacts_dir()}/tensorboard')
 
     for epoch in range(1, args['epochs'] + 1):
+        os.system("ping www.google.com -t 10")
         train(args, model, device, train_loader, optimizer, epoch)
         test_acc = test(args, model, device, test_loader)
+        torch.cuda.empty_cache()
+
 
         # report intermediate result
         # nni.report_intermediate_result(test_acc)
@@ -153,8 +157,8 @@ def get_params():
                         help='learning rate (default: 0.01)')
     parser.add_argument('--momentum', type=float, default=0.5, metavar='M',
                         help='SGD momentum (default: 0.5)')
-    parser.add_argument('--epochs', type=int, default=10, metavar='N',
-                        help='number of epochs to train (default: 10)')
+    parser.add_argument('--epochs', type=int, default=30, metavar='N',
+                        help='number of epochs to train (default: 30)')
     parser.add_argument('--seed', type=int, default=1, metavar='S',
                         help='random seed (default: 1)')
     parser.add_argument('--no_cuda', action='store_true', default=False,
