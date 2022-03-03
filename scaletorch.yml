@@ -1,4 +1,4 @@
-entrypoint: mnist.py
+entrypoint: mnist_st.py
 name: monitor-test
 gpusPerTrial: 1
 maxGpus: 4
