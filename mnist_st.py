@@ -8,6 +8,7 @@ https://github.com/pytorch/examples/blob/master/mnist/main.py
 import argparse
 import logging
 import nni
+import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
