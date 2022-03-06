@@ -1,12 +1,12 @@
 entrypoint: mnist_st.py
 name: monitor-test
 gpusPerTrial: 1
-maxGpus: 1
+maxGpus: 4
 requirements: requirements.txt
 gpuTypes:
   - K80
 
-useSpot: true
+useSpot: false
 cuda: 11.3
 
 cloudProviders: 
