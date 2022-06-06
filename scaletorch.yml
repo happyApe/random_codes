@@ -1,4 +1,4 @@
-entrypoint: main.py
+entrypoint: mnist.py
 requirements: requirements.txt
 
 minvCPUs: 4
