@@ -1,49 +1,33 @@
-entrypoint: mnist_st.py
-name: monitor-test
-gpusPerTrial: 1
-maxGpus: 4
+entrypoint: main.py
 requirements: requirements.txt
-gpuTypes:
-  - K80
+
+minvCPUs: 4
+minMemory: 4
+# maxCPUWorkers: 1
+gpuTypes: [K80]
+gpusPerTrial: 1 
+# maxGpus:2
 
 useSpot: false
 cuda: 11.3
 
 cloudProviders: 
-  - name: AZURE
-    regions:
-      - eastus
-      - southcentralus
-
-environment:
-  PLATFORM_API: http://platform-api-loadbalancer-1708204133.us-east-1.elb.amazonaws.com
-  ST_API_KEY: h8PU96vrf2pH8YvcSLiS17wy9qdGsuCj 
+   # - name: DATACRUNCH
+   #   regions:
+   #     - FIN1
+   # - name: AZURE
+   #   regions:
+   #    - eastus
+   - name: GCP
+     regions:
+       - us-central1
+       - us-west4
+       - us-east1
+                    
 
 maxCost: 50
 maxTime: 1h25m
 
-preJobCommands:
-  - apt-get update -y
-  - apt-get install nano
-
-postJobCommands:
-  - curl --upload-file ./your-file.txt https://free.keep.sh 
-
-sweep:
-  searchSpace:
-    batch_size:
-      type: choice
-      value: [16, 32, 64, 128]
-    hidden_size:
-      type: choice
-      value: [128, 256, 512, 1024]
-    lr:
-      type: choice
-      value: [0.0001, 0.001, 0.01, 0.1]
-    momentum:
-      type: uniform
-      value: [0, 1]
-
-  tuner:                          
-    name: TPE                                     
-    optimizeMode: maximize     
+experiment:
+    args:
+      batch_size: [16, 32]
