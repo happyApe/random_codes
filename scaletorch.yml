@@ -3,26 +3,26 @@ requirements: requirements.txt
 
 minvCPUs: 4
 minMemory: 4
-# maxCPUWorkers: 1
-gpuTypes: [K80]
-gpusPerTrial: 1 
+maxCPUWorkers: 1
+# gpuTypes: [K80]
+# gpusPerTrial: 1 
 # maxGpus:2
 
 useSpot: false
 cuda: 11.3
 
 cloudProviders: 
-   # - name: DATACRUNCH
-   #   regions:
-   #     - FIN1
-   # - name: AZURE
-   #   regions:
-   #    - eastus
-   - name: GCP
+   - name: DATACRUNCH
      regions:
-       - us-central1
-       - us-west4
-       - us-east1
+       - FIN1
+   # - name: AZURE
+     # regions:
+      # - eastus
+   # - name: GCP
+   #   regions:
+   #     - us-central1
+   #     - us-west4
+   #     - us-east1
                     
 
 maxCost: 50
